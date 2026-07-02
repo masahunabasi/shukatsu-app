@@ -39,16 +39,16 @@ PCのブラウザからフォームで各種情報を入力し、「登録完了
 
 ---
 
-## 2. 設計図（Mermaid仕様）
+## 2. 設計図
 
-### ① ユースケース図（風）
+### ① ユースケース図
 ```mermaid
 graph LR
     User([就活生 本人]) --> ViewDashboard[直近の締め切り・予定を一覧する]
     User --> RegisterCompany[企業情報を登録・選考状態を変更する]
     User --> RegisterTask[ESやWEBテストの締め切りを登録する]
     User --> RegisterSchedule[面接やインターンの予定を登録する]
-② クラス図（データ構造）
+② クラス図
 コード スニペット
 classDiagram
     class Company {
@@ -73,7 +73,7 @@ classDiagram
     }
     Company "1" --> "0..*" Schedule
     Company "1" --> "0..*" Task
-③ シーケンス図（代表：締め切りタスク登録の流れ）
+③ シーケンス図
 コード スニペット
 sequenceDiagram
     actor User as 就活生
@@ -90,7 +90,7 @@ sequenceDiagram
     DB-->>Server: データ返却
     Server-->>Browser: 200 OK (更新されたダッシュボードHTML)
     Browser->>User: 画面に直近の締め切り一覧が反映される
-④ 状態遷移図（企業の選考ステータス）
+④ 状態遷移図
 コード スニペット
 stateDiagram-v2
     [*] --> 未応募
@@ -172,4 +172,4 @@ Write (変更後のステータス書き込み)
 
 Exit (一覧画面の更新表示)
 
-合計機能規模: 3 + 2 + 4 + 4 + 5 + 9 + 4 = 31 CFP (目標規模の30〜40 CFPに適合)
+合計機能規模: 3 + 2 + 4 + 4 + 5 + 9 + 4 = 31 CFP
