@@ -47,7 +47,8 @@ graph LR
 User([就活生 本人])-->ViewDashboard[直近の締め切り・予定を一覧する]
 User-->RegisterCompany[企業情報を登録・選考状態を変更する]
 User-->RegisterTask[ESやWEBテストの締め切りを登録する]
-User-->RegisterSchedule[面接やインターンの予定を登録する]classDiagram
+User-->RegisterSchedule[面接やインターンの予定を登録する]
+classDiagram
 class Company{
 +int id
 +string name
@@ -69,7 +70,23 @@ class Task{
 +boolean is_completed
 }
 Company "1" --> "0..*" Schedule
-Company "1" --> "0..*" TaskstateDiagram-v2
+Company "1" --> "0..*" Task
+sequenceDiagram
+actor User as 就活生
+participant Browser as ブラウザ (HTML画面)
+participant Server as Flaskサーバー (app.py)
+participant DB as データ保存ファイル (JSON)
+
+User->>Browser: 締め切り情報を入力して「登録」クリック
+Browser->>Server: POST /task/add (データ送信)
+Server->>DB: タスクデータをファイルに書き込み
+DB-->>Server: 書き込み完了通知
+Server-->>Browser: 302 Redirect (ダッシュボードへ)
+Server->>DB: 最新のタスク・スケジュール一覧を読み出し
+DB-->>Server: データ返却
+Server-->>Browser: 200 OK (更新されたダッシュボードHTML)
+Browser->>User: 画面に直近の締め切り一覧が反映される
+stateDiagram-v2
 [*]-->未応募
 未応募-->書類審査中:エントリー/ES提出
 書類審査中-->面接待ち:書類選考通過
@@ -77,7 +94,8 @@ Company "1" --> "0..*" TaskstateDiagram-v2
 面接待ち-->内定:最終面接通過
 面接待ち-->選考終了:面接不合格
 内定-->[*]
-選考終了-->[*]3. COSMIC CFP 機能規模見積もり
+選考終了-->[*]
+3. COSMIC CFP 機能規模見積もり
 本アプリの主要機能に基づく、COSMIC機能規模測定（算出結果：31 CFP）
 
 データグループ (Data Groups)
