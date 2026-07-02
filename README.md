@@ -49,7 +49,8 @@ graph LR
     User --> RegisterTask[ESやWEBテストの締め切りを登録する]
     User --> RegisterSchedule[面接やインターンの予定を登録する]
 ```
-```classDiagram
+```
+classDiagram
     class Company {
         +int id
         +string name
@@ -73,7 +74,8 @@ graph LR
     Company "1" --> "0..*" Schedule
     Company "1" --> "0..*" Task
 ```
-```sequenceDiagram
+```
+sequenceDiagram
     actor User as 就活生
     participant Browser as ブラウザ (HTML画面)
     participant Server as Flaskサーバー (app.py)
@@ -89,7 +91,8 @@ graph LR
     Server-->>Browser: 200 OK (更新されたダッシュボードHTML)
     Browser->>User: 画面に直近の締め切り一覧が反映される
 ```
-```stateDiagram-v2
+```
+stateDiagram-v2
     [*] --> 未応募
     未応募 --> 書類審査中 : エントリー/ES提出
     書類審査中 --> 面接待ち : 書類選考通過
