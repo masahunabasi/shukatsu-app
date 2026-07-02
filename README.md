@@ -49,6 +49,7 @@ graph LR
     User --> RegisterTask[ESやWEBテストの締め切りを登録する]
     User --> RegisterSchedule[面接やインターンの予定を登録する]
 ```
+### ② クラス図
 ```mermaid
 classDiagram
     class Company {
@@ -74,6 +75,7 @@ classDiagram
     Company "1" --> "0..*" Schedule
     Company "1" --> "0..*" Task
 ```
+### ③ シーケンス図
 ```mermaid
 sequenceDiagram
     actor User as 就活生
@@ -91,6 +93,7 @@ sequenceDiagram
     Server-->>Browser: 200 OK (更新されたダッシュボードHTML)
     Browser->>User: 画面に直近の締め切り一覧が反映される
 ```
+### ④ 状態遷移図
 ```mermaid
 stateDiagram-v2
     [*] --> 未応募
