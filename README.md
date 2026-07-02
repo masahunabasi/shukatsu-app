@@ -48,8 +48,7 @@ graph LR
     User --> RegisterCompany[企業情報を登録・選考状態を変更する]
     User --> RegisterTask[ESやWEBテストの締め切りを登録する]
     User --> RegisterSchedule[面接やインターンの予定を登録する]
-② クラス図
-コード スニペット
+
 classDiagram
     class Company {
         +int id
@@ -73,8 +72,7 @@ classDiagram
     }
     Company "1" --> "0..*" Schedule
     Company "1" --> "0..*" Task
-③ シーケンス図
-コード スニペット
+
 sequenceDiagram
     actor User as 就活生
     participant Browser as ブラウザ (HTML画面)
@@ -90,8 +88,7 @@ sequenceDiagram
     DB-->>Server: データ返却
     Server-->>Browser: 200 OK (更新されたダッシュボードHTML)
     Browser->>User: 画面に直近の締め切り一覧が反映される
-④ 状態遷移図
-コード スニペット
+
 stateDiagram-v2
     [*] --> 未応募
     未応募 --> 書類審査中 : エントリー/ES提出
@@ -101,6 +98,7 @@ stateDiagram-v2
     面接待ち --> 選考終了 : 面接不合格
     内定 --> [*]
     選考終了 --> [*]
+
 3. COSMIC CFP 機能規模見積もり
 本アプリの主要機能に基づく、COSMIC機能規模測定（算出結果：31 CFP）
 
